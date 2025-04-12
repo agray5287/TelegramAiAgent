@@ -54,7 +54,7 @@ func handleUpdate(bot *tgbotapi.BotAPI, aiClient *openai.Client, update tgbotapi
 	userText := update.Message.Text
 
 	// --- New: Load system prompt from text file ---
-	promptBytes, err := os.ReadFile("system_prompt.txt")
+	promptBytes, err := os.ReadFile("internal/config/system_prompt.txt")
 	if err != nil {
 		log.Println("Error reading system_prompt.txt:", err)
 		return
