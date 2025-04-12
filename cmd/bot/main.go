@@ -14,7 +14,7 @@ func main() {
 	// Load environment variables from .env file.
 	err := godotenv.Load()
 	if err != nil {
-		log.Println("No .env file found")
+		//log.Println("No .env file found")
 	}
 
 	telegramToken := os.Getenv("TELEGRAM_API_KEY")
