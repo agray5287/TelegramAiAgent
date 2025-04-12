@@ -53,13 +53,22 @@ func handleUpdate(bot *tgbotapi.BotAPI, aiClient *openai.Client, update tgbotapi
 	chatID := update.Message.Chat.ID
 	userText := update.Message.Text
 
+	// --- New: Load system prompt from text file ---
+	promptBytes, err := os.ReadFile("system_prompt.txt")
+	if err != nil {
+		log.Println("Error reading system_prompt.txt:", err)
+		return
+	}
+	systemPrompt := string(promptBytes)
+	// --- End loading system prompt ---
+
 	// Build a ChatCompletion request for GPT‑4.
 	req := openai.ChatCompletionRequest{
 		Model: "gpt-4o",
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    "system",
-				Content: "You are a helpful and friendly assistant.",
+				Content: systemPrompt,
 			},
 			{
 				Role:    "user",
