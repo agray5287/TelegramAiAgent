@@ -1,0 +1,5 @@
+{
+    "task": "Default Configuration",
+    "cron": "0 0 * * *",
+    "prompt": "Please enter your input:"
+}
